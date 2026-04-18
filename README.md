@@ -226,7 +226,7 @@ go mod tidy
 
 应用会在您的电脑上创建以下文件夹：
 ```
-C:\Users\您的用户名\.go-music-player\
+C:\Users\您的用户名\.25music-player\
 ├── cache\
 │   ├── favorites.json      # 收藏的歌曲
 │   ├── history.json        # 播放历史

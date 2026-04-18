@@ -40,7 +40,7 @@ func GetUserHomeDir() string {
 // GetDataDir 获取数据目录
 func GetDataDir() string {
 	home := GetUserHomeDir()
-	return filepath.Join(home, ".go-music-player")
+	return filepath.Join(home, ".25music-player")
 }
 
 // GetCacheDir 获取缓存目录
