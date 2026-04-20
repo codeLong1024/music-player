@@ -40,8 +40,8 @@ function renderSearchPage(container) {
             ${totalPages > 1 ? renderPagination(currentPage, totalPages) : ''}
         `;
 
-        // 使用事件委托绑定事件
-        bindTableEvents(tableWrapper, results, 'search');
+        // 使用事件委托绑定事件（传入当前页数据，确保索引对应）
+        bindTableEvents(tableWrapper, currentPageResults, 'search');
     }
 
     container.appendChild(tableWrapper);

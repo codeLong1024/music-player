@@ -189,13 +189,7 @@ function updateTableHighlight() {
         const activeRow = document.querySelector(`tr[data-song-id="${State.currentSong.id}"]`);
         if (activeRow) {
             activeRow.classList.add('active');
-            
-            // 如果当前在播放列表或收藏/历史页，且该行有 index-btn-group，触发音波动画
-            const indexGroup = activeRow.querySelector('.index-btn-group');
-            if (indexGroup && !activeRow.closest('.search-page')) {
-                // 替换为音波动画
-                indexGroup.innerHTML = '<span class="playing-indicator"><span></span><span></span><span></span><span></span></span>';
-            }
+            // 不再替换为音波动画，仅通过CSS高亮显示
         }
     }
 }
@@ -204,7 +198,8 @@ function updateTableHighlight() {
  * 处理清空历史
  */
 async function handleClearHistory() {
-    if (!confirm('确定要清空播放历史吗？')) return;
+    const confirmed = await showConfirm('确定要清空播放历史吗？');
+    if (!confirmed) return;
     
     try {
         await clearHistory();

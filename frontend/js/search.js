@@ -106,24 +106,27 @@ async function addSongToPlaylistFromSearch(song) {
 }
 
 /**
- * 全部添加到播放列表
+ * 全部添加到播放列表（改为：添加当前页到播放列表）
  */
 async function handleAddAllToPlaylist() {
-    const results = State.searchResults || [];
-    if (results.length === 0) {
-        showToast('没有可添加的歌曲');
+    // 获取当前页结果，而不是所有结果
+    const currentPageResults = getCurrentPageResults();
+    if (currentPageResults.length === 0) {
+        showToast('当前页没有可添加的歌曲');
         return;
     }
     
     // 过滤出未添加的歌曲
-    const toAdd = results.filter(song => !State.playlist.some(s => s.id === song.id));
+    const toAdd = currentPageResults.filter(song => !State.playlist.some(s => s.id === song.id));
     
     if (toAdd.length === 0) {
-        showToast('所有歌曲已在播放列表中');
+        showToast('当前页歌曲已在播放列表中');
         return;
     }
     
-    if (!confirm(`确定要添加 ${toAdd.length} 首歌曲到播放列表吗？`)) {
+    // 使用自定义确认弹窗替代原生 confirm
+    const confirmed = await showConfirm(`确定要添加当前页 ${toAdd.length} 首歌曲到播放列表吗？`);
+    if (!confirmed) {
         return;
     }
     
@@ -159,9 +162,9 @@ function updateAddButtonState(songId, isAdded) {
         if (songIdAttr && songIdAttr === String(songId)) {
             if (isAdded) {
                 btn.classList.add('added');
-                btn.textContent = '✓';
+                btn.textContent = '+';  // 保持 + 号，不改为 ✓
                 btn.disabled = true;
-                btn.setAttribute('title', '已添加到列表');
+                btn.setAttribute('title', '已添加');
             } else {
                 btn.classList.remove('added');
                 btn.textContent = '+';

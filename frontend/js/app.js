@@ -156,3 +156,5 @@ window.nextSearchPage = nextSearchPage;
 // 数据同步函数
 window.syncFavoritesFromBackend = syncFavoritesFromBackend;
 window.syncHistoryFromBackend = syncHistoryFromBackend;
+// 工具函数
+window.showConfirm = showConfirm;

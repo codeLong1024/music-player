@@ -339,8 +339,8 @@
     border: none;
     border-radius: 50%;
     cursor: pointer;
-    color: var(--text-secondary);
-    font-size: 16px;
+    color: var(--accent-color);  /* 红色 + 号 */
+    font-size: 18px;
     font-weight: bold;
     line-height: 1;
     display: inline-flex;
@@ -352,18 +352,18 @@
 }
 
 .index-add-btn:hover:not(:disabled) {
-    background: rgba(76, 175, 80, 0.15);
-    color: #4CAF50;
+    background: rgba(198, 47, 47, 0.15);
+    color: var(--accent-hover);
     transform: scale(1.15);
 }
 
 .index-add-btn.added {
-    color: #4CAF50;
-    cursor: default;
+    color: var(--text-tertiary);  /* 灰色禁用状态 */
+    cursor: not-allowed;
+    opacity: 0.4;
 }
 
 .index-add-btn:disabled {
-    opacity: 0.5;
     cursor: not-allowed;
 }
 
@@ -435,18 +435,19 @@
     padding: 0 4px;
 }
 
-/* 表头“全部添加”按钮 */
+/* 表头"全部添加"按钮 */
 .add-all-header-btn {
-    padding: 2px 6px;
+    padding: 2px 4px;
     background: var(--accent-color);
     color: #fff;
     border: none;
     border-radius: 3px;
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 600;
     cursor: pointer;
     transition: all var(--transition-fast);
     white-space: nowrap;
+    min-width: 28px;
 }
 
 .add-all-header-btn:hover {
@@ -936,4 +937,86 @@
 
 .search-modal-results .song-table th.col-song {
     width: 65%;
+}
+
+/* ========== 自定义确认弹窗 ========== */
+.confirm-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s ease;
+    backdrop-filter: blur(4px);
+}
+
+.confirm-modal-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.confirm-modal {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    width: 320px;
+    max-width: 90vw;
+    box-shadow: var(--shadow-lg);
+    transform: scale(0.95);
+    transition: transform 0.2s ease;
+    text-align: center;
+}
+
+.confirm-modal-overlay.show .confirm-modal {
+    transform: scale(1);
+}
+
+.confirm-modal-message {
+    font-size: 14px;
+    color: var(--text-primary);
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+.confirm-modal-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+}
+
+.confirm-btn {
+    padding: 8px 20px;
+    border-radius: var(--radius-sm);
+    font-size: 13px;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    border: none;
+    min-width: 70px;
+}
+
+.cancel-btn {
+    background: var(--bg-tertiary);
+    color: var(--text-secondary);
+}
+
+.cancel-btn:hover {
+    background: var(--bg-hover);
+    color: var(--text-primary);
+}
+
+.ok-btn {
+    background: var(--accent-color);
+    color: #fff;
+}
+
+.ok-btn:hover {
+    background: var(--accent-hover);
 }

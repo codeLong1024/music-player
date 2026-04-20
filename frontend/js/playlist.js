@@ -88,7 +88,8 @@ async function handleRemoveFromPlaylist(songId) {
  * 清空播放列表
  */
 async function handleClearPlaylist() {
-    if (!confirm('确定要清空播放列表吗？')) return;
+    const confirmed = await showConfirm('确定要清空播放列表吗？');
+    if (!confirmed) return;
 
     try {
         State.playlist = [];
@@ -115,18 +116,4 @@ function playSongAtIndex(index) {
     }
     
     playSong(State.playlist[index]);
-}
-
-/**
- * 获取播放列表长度
- */
-function getPlaylistLength() {
-    return State.playlist ? State.playlist.length : 0;
-}
-
-/**
- * 检查歌曲是否在播放列表中
- */
-function isInPlaylist(songId) {
-    return State.playlist.some(s => s.id === songId);
 }

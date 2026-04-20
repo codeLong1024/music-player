@@ -61,10 +61,14 @@ function bindTableEvents(tableWrapper, songs, context) {
         
         const index = parseInt(row.dataset.index);
         const song = songs[index];
-        if (!song) return;
+        if (!song) {
+            console.warn('[表格事件] 未找到对应索引的歌曲:', index);
+            return;
+        }
         
         // 搜索结果页面：单击直接播放
         if (context === 'search') {
+            console.log('[搜索页播放] 点击歌曲:', song.title, '索引:', index);
             playSong(song);
         } else if (context === 'favorites') {
             // 收藏页面单击直接播放

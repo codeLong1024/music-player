@@ -99,21 +99,7 @@ function clearElement(element) {
 // }
 
 /**
- * 节流函数（保留以备将来使用）
- */
-// function throttle(func, limit = 100) {
-//     let inThrottle;
-//     return function(...args) {
-//         if (!inThrottle) {
-//             func.apply(this, args);
-//             inThrottle = true;
-//             setTimeout(() => inThrottle = false, limit);
-//         }
-//     };
-// }
-
-/**
- * 显示Toast提示
+ * 显示 Toast 提示
  */
 function showToast(message, duration = 2000) {
     const toast = createElement('div', 'toast', message);
@@ -139,4 +125,51 @@ function escapeHtml(text) {
     const div = document.createElement('div');
     div.textContent = text;
     return div.innerHTML;
+}
+
+/**
+ * 显示自定义确认弹窗（替代原生 confirm）
+ */
+function showConfirm(message) {
+    return new Promise((resolve) => {
+        // 移除已存在的弹窗
+        const existing = document.querySelector('.confirm-modal-overlay');
+        if (existing) existing.remove();
+
+        const overlay = createElement('div', 'confirm-modal-overlay');
+        overlay.innerHTML = `
+            <div class="confirm-modal">
+                <div class="confirm-modal-message">${escapeHtml(message)}</div>
+                <div class="confirm-modal-actions">
+                    <button class="confirm-btn cancel-btn">取消</button>
+                    <button class="confirm-btn ok-btn">确定</button>
+                </div>
+            </div>
+        `;
+
+        document.body.appendChild(overlay);
+
+        // 强制重绘以触发过渡动画
+        requestAnimationFrame(() => {
+            overlay.classList.add('show');
+        });
+
+        const close = (result) => {
+            overlay.classList.remove('show');
+            setTimeout(() => {
+                if (document.body.contains(overlay)) {
+                    document.body.removeChild(overlay);
+                }
+            }, 200);
+            resolve(result);
+        };
+
+        overlay.querySelector('.cancel-btn').addEventListener('click', () => close(false));
+        overlay.querySelector('.ok-btn').addEventListener('click', () => close(true));
+        
+        // 点击背景关闭
+        overlay.addEventListener('click', (e) => {
+            if (e.target === overlay) close(false);
+        });
+    });
 }

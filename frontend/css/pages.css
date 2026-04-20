@@ -569,16 +569,16 @@
 }
 
 .search-page .song-table th.col-index {
-    width: 50px;
+    width: 45px;
     text-align: center;
 }
 
 .search-page .song-table th.col-artist {
-    width: 20%;
+    width: 25%;
 }
 
 .search-page .song-table th.col-song {
-    width: 80%;
+    width: 75%;
 }
 
 .search-page .song-table th.col-action {

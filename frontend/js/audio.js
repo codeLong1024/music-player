@@ -56,6 +56,11 @@ async function playSong(song, autoPlay = true) {
         if (!existsInPlaylist) {
             State.playlist.push(song);
             saveState();
+            
+            // 如果当前在搜索页，立即更新添加按钮状态
+            if (State.currentPage === 'search' && typeof updateAddButtonState === 'function') {
+                updateAddButtonState(song.id, true);
+            }
         }
 
         // 设置音频源
