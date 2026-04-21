@@ -69,11 +69,6 @@ function renderPlayingPage(container) {
             <div class="playing-right">
                 <div class="lyrics-wrapper glass-card">
                     <div class="lyrics-header">
-                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M9 18V5l12-2v13"/>
-                            <circle cx="6" cy="18" r="3"/>
-                            <circle cx="18" cy="16" r="3"/>
-                        </svg>
                         <span>歌词</span>
                     </div>
                     <div id="lyricsContainer" class="lyrics-scroll">

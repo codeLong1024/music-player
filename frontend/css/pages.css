@@ -257,31 +257,34 @@
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    padding: 28px;
+    padding: 20px 30px;
     height: 100%;
 }
 
 .lyrics-header {
     display: flex;
     align-items: center;
-    gap: 8px;
-    padding-bottom: 16px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    color: var(--text-secondary);
-    font-size: 14px;
-    font-weight: 500;
+    gap: 6px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    color: var(--text-tertiary);
+    font-size: 12px;
+    font-weight: 400;
     flex-shrink: 0;
+    opacity: 0.5;
 }
 
 .lyrics-scroll {
     flex: 1;
     overflow-y: auto;
+    overflow-x: hidden;
     padding: 20px 0;
     scroll-behavior: auto;
 }
 
 .lyrics-scroll::-webkit-scrollbar {
-    width: 4px;
+    width: 0;
+    height: 0;
 }
 
 .lyrics-scroll::-webkit-scrollbar-track {
@@ -289,24 +292,26 @@
 }
 
 .lyrics-scroll::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 2px;
+    background: transparent;
 }
 
 .lyrics-scroll::-webkit-scrollbar-thumb:hover {
-    background: rgba(255, 255, 255, 0.2);
+    background: transparent;
 }
 
 .lyric-line {
-    padding: 12px 16px;
+    padding: 10px 24px;
     font-size: 15px;
-    color: rgba(255, 255, 255, 0.4);
+    color: rgba(255, 255, 255, 0.35);
     transition: color 0.15s ease, background 0.15s ease, font-size 0.15s ease;
     cursor: pointer;
     line-height: 1.8;
     border-radius: 8px;
     margin: 4px 0;
     will-change: color, background;
+    text-align: center;
+    word-wrap: break-word;
+    white-space: normal;
 }
 
 .lyric-line:hover {
